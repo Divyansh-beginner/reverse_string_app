@@ -6,6 +6,8 @@ var str string
 fmt.Scanln(&str)
 fmt.Print("\n")
 reverse(str)
+fmt.Println("thank you for using our app")
+
 
 }
 func reverse (str string ){
