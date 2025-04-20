@@ -13,10 +13,10 @@ RUN go mod download
 # Now copy the rest of the project files, including Go code and scripts
 COPY . ./
 # Build your Go application
-RUN go build -o server
+RUN go build -o dockerised_server
 
 # Expose the port your Go server listens on (change if needed)
 EXPOSE 8080
 
 # Start your server (container command)
-CMD ["./server"]
+CMD ["./dockerised_server"]
