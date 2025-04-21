@@ -5,7 +5,8 @@ import(
 _ "github.com/lib/pq"
 )
 func connect(input string , output string) error{
-db, err :=sql.Open("postgres","host=localhost port=5432 user=postgres dbname=requests sslmode=disable")
+db, err :=sql.Open("postgres","host=pg_service3 port=5432 user=postgres dbname=requestsdb_docker sslmode=disable")
+
 if err != nil{
 return fmt.Errorf("error in accesing the database : %v",err)
 }
