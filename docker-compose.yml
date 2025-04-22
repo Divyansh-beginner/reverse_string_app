@@ -22,7 +22,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: requestsdb_docker
-      POSTGRES_HOST_AUTH_METHOD: trust   # ← Add this line if no password is set
+      POSTGRES_PASSWORD: "987654321"   # ← Add this line if no password is set
     volumes:
       - pg_data3:/var/lib/postgresql/data
     networks:
