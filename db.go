@@ -16,7 +16,7 @@ var db *sql.DB
 
 func connectandcheckdbconnection() error{
     var err error
-    db, err =sql.Open("postgres","host=localhost port=5432 user=postgres dbname=requests sslmode=disable")
+    db, err =sql.Open("postgres","host=pg_host3_redis port=5432 user=postgres password=987654321 dbname=requestsdb_docker sslmode=disable")
     if err != nil{
     return fmt.Errorf("error in accesing the database : %v",err)
     }

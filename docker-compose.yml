@@ -1,23 +1,25 @@
 version: "3.8"
 
 services:
-  go_srv_service3:
-    image: go_server_in_container:method3
-    container_name: go_srv_container3
-    hostname: go_srv_host3
+  
+  go_srv_service3_redis:
+    image: go_server_in_container:method3_redis
+    container_name: go_srv_container3_redis
+    hostname: go_srv_host3_redis
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
       - "8090:8080"         # ← this needs to be a list format
     depends_on:
-      - pg_service3         # ← also should be a list
+      - pg_service3_redis
+      - redis_service3_redis        # ← also should be a list
     networks:
       - custom_net3
 
-  pg_service3:
-    container_name: pg_container3
-    hostname: pg_host3
+  pg_service3_redis:
+    container_name: pg_container3_redis
+    hostname: pg_host3_redis
     image: postgres:16
     environment:
       POSTGRES_USER: postgres
@@ -27,9 +29,20 @@ services:
       - pg_data3:/var/lib/postgresql/data
     networks:
       - custom_net3
+      
+  redis_service3_redis:
+    image: redis:7
+    container_name: redis_container3_redis
+    hostname: redis_host3_redis
+    depends_on:
+      - pg_service3_redis
+    networks:
+      - custom_net3  
+    
 
 networks:
   custom_net3:
+    driver: bridge
 
 volumes:
   pg_data3:
